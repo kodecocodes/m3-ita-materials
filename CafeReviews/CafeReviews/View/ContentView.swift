@@ -39,7 +39,7 @@ struct ContentView: View {
     NavigationStack {
       List(viewModel.cafeReviews) { review in
         NavigationLink {
-          // ViewTranslationView()
+          DetailView(review: review)
         } label: {
           RowView(title: review.name,
                   subtitle: review.address,
