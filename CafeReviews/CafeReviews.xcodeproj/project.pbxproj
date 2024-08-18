@@ -16,6 +16,7 @@
 		5A63DF7C2C44240A001358AE /* AvailableLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63DF792C44240A001358AE /* AvailableLanguage.swift */; };
 		5A63DF7F2C4424AF001358AE /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63DF7E2C4424AF001358AE /* Review.swift */; };
 		5A63DF822C442867001358AE /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63DF812C442867001358AE /* RowView.swift */; };
+		5A6D55FB2C72456F001A6E01 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D55FA2C72456F001A6E01 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		5A63DF7A2C44240A001358AE /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		5A63DF7E2C4424AF001358AE /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		5A63DF812C442867001358AE /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
+		5A6D55FA2C72456F001A6E01 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +67,6 @@
 				5A63DF7D2C442469001358AE /* Model */,
 				5A63DF782C4423E9001358AE /* ViewModel */,
 				5A63DF5E2C441EC1001358AE /* CafeReviewsApp.swift */,
-				5A63DF602C441EC1001358AE /* ContentView.swift */,
 				5A63DF622C441EC2001358AE /* Assets.xcassets */,
 				5A63DF762C4422F1001358AE /* Data */,
 				5A63DF642C441EC2001358AE /* Preview Content */,
@@ -109,7 +110,9 @@
 		5A63DF802C442852001358AE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5A6D55FA2C72456F001A6E01 /* DetailView.swift */,
 				5A63DF812C442867001358AE /* RowView.swift */,
+				5A63DF602C441EC1001358AE /* ContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				5A63DF7F2C4424AF001358AE /* Review.swift in Sources */,
 				5A63DF822C442867001358AE /* RowView.swift in Sources */,
 				5A63DF612C441EC1001358AE /* ContentView.swift in Sources */,
+				5A6D55FB2C72456F001A6E01 /* DetailView.swift in Sources */,
 				5A63DF7B2C44240A001358AE /* ViewModel.swift in Sources */,
 				5A63DF7C2C44240A001358AE /* AvailableLanguage.swift in Sources */,
 				5A63DF5F2C441EC1001358AE /* CafeReviewsApp.swift in Sources */,
