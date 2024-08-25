@@ -29,6 +29,7 @@
 /// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
+
 import Foundation
 import Translation
 
@@ -39,16 +40,16 @@ class ViewModel {
 
   var cafeReviews: [Review] = []
 
-  func reset() {
-    // TODO: Reset cafe reviews
-    isTranslationSupported = nil
-  }
-
   var availableLanguages: [AvailableLanguage] = []
 
   init() {
     cafeReviews = loadCafeReviews()
     prepareSupportedLanguages()
+  }
+
+  func reset() {
+    // TODO: Reset cafe reviews
+    isTranslationSupported = nil
   }
 
   func prepareSupportedLanguages() {

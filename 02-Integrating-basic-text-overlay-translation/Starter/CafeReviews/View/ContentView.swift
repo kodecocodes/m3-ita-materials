@@ -49,7 +49,6 @@ struct ContentView: View {
       .navigationTitle("Cafe Reviews")
     }
   }
-
 }
 
 #Preview {

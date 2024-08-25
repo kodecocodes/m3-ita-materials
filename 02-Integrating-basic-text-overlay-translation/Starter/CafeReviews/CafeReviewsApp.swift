@@ -34,11 +34,12 @@ import SwiftUI
 
 @main
 struct CafeReviewsApp: App {
-  @State private var model = ViewModel()
+  @State private var viewModel = ViewModel()
 
   var body: some Scene {
     WindowGroup {
-      ContentView().environment(model)
+      ContentView()
+        .environment(viewModel)
     }
   }
 }
