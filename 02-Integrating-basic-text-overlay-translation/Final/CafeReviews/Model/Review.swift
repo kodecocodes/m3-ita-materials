@@ -33,7 +33,7 @@
 import Foundation
 
 struct Review: Identifiable, Codable {
-  let id = UUID()
+  let id: Int
   let name: String
   let address: String
   let description: String
