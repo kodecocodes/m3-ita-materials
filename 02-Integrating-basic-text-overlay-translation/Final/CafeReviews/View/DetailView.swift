@@ -34,52 +34,49 @@ import SwiftUI
 import Translation
 
 struct DetailView: View {
-    
-    // Define the condition to display the translation UI.
-    @State private var showTranslation = false
-    
-    // Define the text you want to translate.
-    var review: Review? = nil
-    
-    var body: some View {
-        let translatableText = review?.name ?? ""
-        VStack(alignment: .leading) {
-            // Translate Button
-            Button("Translate") {
-                showTranslation.toggle()
-            }
-            .buttonStyle(.bordered)
-            .frame(maxWidth: .infinity)
-            // Title
-            Text(verbatim: review?.description ?? "")
-                .font(.headline)
-                .padding(.top, 40)
-            // Highlights
-            Text(verbatim: "Highlights")
-                .font(.title3)
-                .padding(.top, 16)
-            Text(verbatim: review?.highlights ?? "")
-            // Address
-            Text(verbatim: "Address")
-                .font(.title3)
-                .padding(.top, 16)
-            Text(verbatim: review?.address ?? "")
-            // Price
-            Text(verbatim: "Price Range: \(review?.price_range ?? "$$")")
-                .font(.subheadline)
-                .padding(.top, 8)
-            // Rating
-            Text(verbatim: "Rating: \(review?.rating ?? 3) / 5")
-                .font(.subheadline)
-            // Trailing Space
-            Spacer()
-        }
-        .navigationTitle(translatableText)
-        .scenePadding()
-        .translationPresentation(isPresented: $showTranslation, text: translatableText)
+  @State private var showTranslation = false
+
+  var review: Review? = nil
+
+  var body: some View {
+    let translatableText = review?.name ?? ""
+    VStack(alignment: .leading) {
+
+      Button("Translate") {
+        showTranslation.toggle()
+      }
+      .buttonStyle(.bordered)
+      .frame(maxWidth: .infinity)
+
+      Text(verbatim: review?.description ?? "")
+        .font(.headline)
+        .padding(.top, 40)
+
+      Text(verbatim: "Highlights")
+        .font(.title3)
+        .padding(.top, 16)
+      Text(verbatim: review?.highlights ?? "")
+
+      Text(verbatim: "Address")
+        .font(.title3)
+        .padding(.top, 16)
+      Text(verbatim: review?.address ?? "")
+
+      Text(verbatim: "Price Range: \(review?.price_range ?? "$$")")
+        .font(.subheadline)
+        .padding(.top, 8)
+
+      Text(verbatim: "Rating: \(review?.rating ?? 3) / 5")
+        .font(.subheadline)
+
+      Spacer()
     }
+    .navigationTitle(translatableText)
+    .scenePadding()
+    .translationPresentation(isPresented: $showTranslation, text: translatableText)
+  }
 }
 
 #Preview {
-    DetailView()
+  DetailView()
 }

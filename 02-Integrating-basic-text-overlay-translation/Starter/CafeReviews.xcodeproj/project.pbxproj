@@ -93,7 +93,6 @@
 		5A63DF782C4423E9001358AE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				5A63DF792C44240A001358AE /* AvailableLanguage.swift */,
 				5A63DF7A2C44240A001358AE /* ViewModel.swift */,
 			);
 			path = ViewModel;
@@ -103,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				5A63DF7E2C4424AF001358AE /* Review.swift */,
+				5A63DF792C44240A001358AE /* AvailableLanguage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

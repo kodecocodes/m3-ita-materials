@@ -39,16 +39,16 @@ class ViewModel {
 
   var cafeReviews: [Review] = []
 
-  func reset() {
-    // TODO: Reset cafe reviews
-    isTranslationSupported = nil
-  }
-
   var availableLanguages: [AvailableLanguage] = []
 
   init() {
     cafeReviews = loadCafeReviews()
     prepareSupportedLanguages()
+  }
+
+  func reset() {
+    // TODO: Reset cafe reviews
+    isTranslationSupported = nil
   }
 
   func prepareSupportedLanguages() {
