@@ -36,7 +36,7 @@ struct DetailView: View {
   var review: Review? = nil
 
   var body: some View {
-    let translatableText = review?.name ?? ""
+    let translatableText = review?.description ?? ""
     VStack(alignment: .leading) {
 
       Button("Translate") {
@@ -68,7 +68,7 @@ struct DetailView: View {
 
       Spacer()
     }
-    .navigationTitle(translatableText)
+    .navigationTitle(review?.name ?? "")
     .scenePadding()
   }
 }

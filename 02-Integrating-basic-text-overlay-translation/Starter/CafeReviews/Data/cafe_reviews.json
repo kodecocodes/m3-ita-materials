@@ -10,9 +10,9 @@
     },
     {
         "id": 1,
-        "name": "Panetteria Umile",
+        "name": "Humble Bakery",
         "address": "50 Holt St, Surry Hills",
-        "description": "Cult bakery known for its pink fingerbun and salami focaccia sambo.",
+        "description": "Panetteria di culto nota per il suo fingerbun rosa e la focaccia di salame sambo.",
         "highlights": "Soft, pillowy bread with dried fruit and pink icing",
         "price_range": "$$",
         "rating": 5
