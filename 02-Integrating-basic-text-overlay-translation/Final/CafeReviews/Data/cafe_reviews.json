@@ -1,0 +1,182 @@
+[
+    {
+        "id": 0,
+        "name": "Reuben Hills",
+        "address": "61 Albion St, Surry Hills",
+        "description": "A boutique specialty roastery with excellent coffee and South American-inspired food.",
+        "highlights": "Huevos divorciados and house-roasted coffee",
+        "price_range": "$$",
+        "rating": 4.5
+    },
+    {
+        "id": 1,
+        "name": "Humble Bakery",
+        "address": "50 Holt St, Surry Hills",
+        "description": "Panetteria di culto nota per il suo fingerbun rosa e la focaccia di salame sambo.",
+        "highlights": "Soft, pillowy bread with dried fruit and pink icing",
+        "price_range": "$$",
+        "rating": 5
+    },
+    {
+        "id": 2,
+        "name": "Four Ate Five",
+        "address": "485 Crown St, Surry Hills",
+        "description": "Middle Eastern-inspired breakfast and lunch options.",
+        "highlights": "485 breakfast plate with falafel, tzatziki, and pita or bagel",
+        "price_range": "$$",
+        "rating": 4.8
+    },
+    {
+        "id": 3,
+        "name": "Lode Pies",
+        "address": "32 Kensington St, Surry Hills",
+        "description": "Pastel-pink pastry shop and café with excellent pies.",
+        "highlights": "Beef and mushroom pie, blueberry tart",
+        "price_range": "$$",
+        "rating": 4.6
+    },
+    {
+        "id": 4,
+        "name": "Paramount Coffee Project",
+        "address": "80 Commonwealth St, Surry Hills",
+        "description": "Bright café with a menu that straddles America’s deep south and Japan.",
+        "highlights": "Crumbed eggs on toast, fried chicken waffles",
+        "price_range": "$$",
+        "rating": 4.7
+    },
+    {
+        "id": 5,
+        "name": "Sample Coffee",
+        "address": "1/118 Devonshire St, Surry Hills",
+        "description": "Small café serving excellent espresso and treats.",
+        "highlights": "Miso cookie",
+        "price_range": "$",
+        "rating": 4.5
+    },
+    {
+        "id": 6,
+        "name": "Bourke Street Bakery",
+        "address": "633 Bourke St, Surry Hills",
+        "description": "Popular bakery with a variety of breads, pies, and pastries.",
+        "highlights": "Sausage rolls, sweet and milky iced coffee",
+        "price_range": "$",
+        "rating": 4.7
+    },
+    {
+        "id": 7,
+        "name": "Cook & Archies Café",
+        "address": "4/4 Buckingham St, Surry Hills",
+        "description": "Family-owned café with a Mediterranean-leaning menu.",
+        "highlights": "Hearty breakfast and lunch options, sandwiches, and fresh salads",
+        "price_range": "$$",
+        "rating": 4.5
+    },
+    {
+        "id": 8,
+        "name": "Bills",
+        "address": "355 Crown St, Surry Hills",
+        "description": "Classic Australian brunch dishes in a bright setting.",
+        "highlights": "Ricotta hotcakes, corn fritters, creamy scrambled eggs",
+        "price_range": "$$",
+        "rating": 4.4
+    },
+    {
+        "id": 9,
+        "name": "Neighbourhood",
+        "address": "143 Reservoir St, Surry Hills",
+        "description": "Small café known for its consistently excellent coffee.",
+        "highlights": "Specialty coffee",
+        "price_range": "$",
+        "rating": 4.5
+    },
+    {
+        "id": 10,
+        "name": "AP Bakery",
+        "address": "L2/80 Commonwealth St, Surry Hills",
+        "description": "Bakery with a variety of baked treats.",
+        "highlights": "Gruyere, asiago, and cheddar blend hot pocket, smoked brisket bagel",
+        "price_range": "$$",
+        "rating": 4.5
+    },
+    {
+        "id": 11,
+        "name": "Sticky Fingers",
+        "address": "23 Pelican St, Surry Hills",
+        "description": "Café with Asian fusion brunch options and quality coffee.",
+        "highlights": "Super green bowl, pulled beef benedict, chilli momo",
+        "price_range": "$$",
+        "rating": 4.4
+    },
+    {
+        "id": 12,
+        "name": "Single O",
+        "address": "60 Reservoir St, Surry Hills",
+        "description": "Specialty coffee roaster and café.",
+        "highlights": "Single-origin coffee, creative breakfast dishes",
+        "price_range": "$$",
+        "rating": 4.5
+    },
+    {
+        "id": 13,
+        "name": "Devon Café",
+        "address": "76 Devonshire St, Surry Hills",
+        "description": "Café with a creative, Asian-inspired menu.",
+        "highlights": "Breakfast with sakura ebi and miso grilled king prawns",
+        "price_range": "$$",
+        "rating": 4.4
+    },
+    {
+        "id": 14,
+        "name": "Artificer Coffee & Roastery",
+        "address": "547 Bourke St, Surry Hills",
+        "description": "Specialty coffee shop and roastery.",
+        "highlights": "Minimalist space focused on coffee",
+        "price_range": "$",
+        "rating": 4.6
+    },
+    {
+        "id": 15,
+        "name": "Kawa Café",
+        "address": "348 Crown St, Surry Hills",
+        "description": "Casual café with a homey atmosphere.",
+        "highlights": "All-day breakfast, organic coffee",
+        "price_range": "$",
+        "rating": 4.3
+    },
+    {
+        "id": 16,
+        "name": "Edition Coffee Roasters",
+        "address": "265 Liverpool St, Surry Hills",
+        "description": "Nordic-Japanese inspired café.",
+        "highlights": "Nordic brunch, Japanese coffee techniques",
+        "price_range": "$$",
+        "rating": 4.6
+    },
+    {
+        "id": 17,
+        "name": "Goro's",
+        "address": "84-86 Mary St, Surry Hills",
+        "description": "Japanese-themed café and bar.",
+        "highlights": "Ramen, Japanese whiskey",
+        "price_range": "$$",
+        "rating": 4.2
+    },
+    {
+        "id": 18,
+        "name": "Gratia",
+        "address": "372 Bourke St, Surry Hills",
+        "description": "Café with a social enterprise mission.",
+        "highlights": "Seasonal, locally sourced ingredients",
+        "price_range": "$$",
+        "rating": 4.4
+    },
+    {
+        "id": 19,
+        "name": "Wilde & Co.",
+        "address": "276 Devonshire St, Surry Hills",
+        "description": "Café with a variety of vegan options.",
+        "highlights": "Vegan breakfast and lunch dishes",
+        "price_range": "$",
+        "rating": 4.3
+    }
+]
