@@ -41,14 +41,9 @@ struct DetailView: View {
     var body: some View {
         let translatableText = review?.description ?? ""
         VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "questionmark.circle")
-                   .frame(maxWidth: .infinity, alignment: .center)
-                   .font(.largeTitle)
-            }
             Text(verbatim: review?.description ?? "")
                 .font(.headline)
-                .padding(.top, 40)
+                .padding(.top, 16)
             
             Text(verbatim: "Highlights")
                 .font(.title3)
@@ -70,13 +65,15 @@ struct DetailView: View {
             Spacer()
         }
         .toolbar {
-            ToolbarItem(placement: .bottomBar) {
+            ToolbarItem(placement: .automatic) {
                 Menu("Translate Menu") {
-                    Button("Check Translation Support") {
-                        print("Clicked - Check Translation Support")
+                    NavigationLink {
+                        TranslationConfigView()
+                    } label: {
+                        Text("Translation Config")
                     }
                     Button("Translate All") {
-                        print("Clicked - Batch Translation")
+                        // TODO: Add Translate All feature
                     }
                 }.menuStyle(.automatic)
             }

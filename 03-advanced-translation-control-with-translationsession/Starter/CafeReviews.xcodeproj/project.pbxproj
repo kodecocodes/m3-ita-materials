@@ -17,6 +17,7 @@
 		5A63DF7F2C4424AF001358AE /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63DF7E2C4424AF001358AE /* Review.swift */; };
 		5A63DF822C442867001358AE /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63DF812C442867001358AE /* RowView.swift */; };
 		5A6D55FB2C72456F001A6E01 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6D55FA2C72456F001A6E01 /* DetailView.swift */; };
+		5AA6DA482C8B2EBB00F39AEB /* TranslationConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA6DA472C8B2EBB00F39AEB /* TranslationConfigView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		5A63DF7E2C4424AF001358AE /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		5A63DF812C442867001358AE /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		5A6D55FA2C72456F001A6E01 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		5AA6DA472C8B2EBB00F39AEB /* TranslationConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationConfigView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		5A63DF802C442852001358AE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5AA6DA472C8B2EBB00F39AEB /* TranslationConfigView.swift */,
 				5A6D55FA2C72456F001A6E01 /* DetailView.swift */,
 				5A63DF812C442867001358AE /* RowView.swift */,
 				5A63DF602C441EC1001358AE /* ContentView.swift */,
@@ -191,6 +194,7 @@
 				5A63DF7F2C4424AF001358AE /* Review.swift in Sources */,
 				5A63DF822C442867001358AE /* RowView.swift in Sources */,
 				5A63DF612C441EC1001358AE /* ContentView.swift in Sources */,
+				5AA6DA482C8B2EBB00F39AEB /* TranslationConfigView.swift in Sources */,
 				5A6D55FB2C72456F001A6E01 /* DetailView.swift in Sources */,
 				5A63DF7B2C44240A001358AE /* ViewModel.swift in Sources */,
 				5A63DF7C2C44240A001358AE /* AvailableLanguage.swift in Sources */,
