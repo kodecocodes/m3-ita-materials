@@ -38,11 +38,9 @@ struct DetailView: View {
     @Environment(ViewModel.self) private var viewModel: ViewModel
     
     @State var review: Review? = nil
-    @State private var showTranslation = false
     @State private var configuration: TranslationSession.Configuration?
     
     var body: some View {
-        let translatableText = review?.description ?? ""
         VStack(alignment: .leading) {
             Text(verbatim: review?.description ?? "")
                 .font(.headline)
@@ -83,7 +81,6 @@ struct DetailView: View {
         }
         .navigationTitle(review?.name ?? "")
         .scenePadding()
-        .translationPresentation(isPresented: $showTranslation, text: translatableText)
         .translationTask(configuration) { session in
             guard let translatableReview = review else {
                 return
