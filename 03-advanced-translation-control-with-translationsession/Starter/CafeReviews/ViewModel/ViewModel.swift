@@ -67,7 +67,6 @@ class ViewModel {
     func loadCafeReviews() -> [Review] {
         if let jsonData = loadJSON(filename: "cafe_reviews") {
             if let reviews = parse(jsonData: jsonData) {
-                print("reviews: \(reviews)")
                 return reviews
             }
         }
@@ -75,89 +74,8 @@ class ViewModel {
     }
 }
 
-// MARK: - Single string of text
-
-extension ViewModel {
-    func translate(text: String, using session: TranslationSession) async {
-        do {
-            let response = try await session.translate(text)
-            translatedText = response.targetText
-        } catch {
-            // Handle any errors.
-        }
-    }
-}
-
-// MARK: - Batch of strings
-/*
- extension ViewModel {
- func translateAllAtOnce(using session: TranslationSession) async {
- Task { @MainActor in
- let requests: [TranslationSession.Request] = cafeReviews.map {
- // Map each item into a request.
- TranslationSession.Request(sourceText: $0)
- }
- 
- do {
- let responses = try await session.translations(from: requests)
- cafeReviews = responses.map {
- // Update each item with the translated result.
- $0.targetText
- }
- } catch {
- // Handle any errors.
- }
- }
- }
- }
- 
- // MARK: - Batch of strings as a sequence
- 
- extension ViewModel {
- func translateSequence(using session: TranslationSession) async {
- Task { @MainActor in
- let requests: [TranslationSession.Request] = cafeReviews.enumerated().map { (index, string) in
- // Assign each request a client identifier.
- .init(sourceText: string, clientIdentifier: "\(index)")
- }
- 
- do {
- for try await response in session.translate(batch: requests) {
- // Use the returned client identifier (the index) to map the request to the response.
- guard let index = Int(response.clientIdentifier ?? "") else { continue }
- cafeReviews[index] = response.targetText
- }
- } catch {
- // Handle any errors.
- }
- }
- }
- }
- */
-
-// MARK: - Language availability
-
-extension ViewModel {
-    func checkLanguageSupport(from source: Locale.Language, to target: Locale.Language) async {
-        translateFrom = source
-        translateTo = target
-        
-        guard let translateFrom = translateFrom else { return }
-        
-        let status = await LanguageAvailability().status(from: translateFrom, to: translateTo)
-        
-        switch status {
-        case .installed, .supported:
-            isTranslationSupported = true
-        case .unsupported:
-            isTranslationSupported = false
-        @unknown default:
-            print("Not supported")
-        }
-    }
-}
-
 // MARK: - JSON Parsing
+
 // Function to read JSON file from the "Data" folder
 func loadJSON(filename fileName: String) -> Data? {
     if let url = Bundle.main.url(forResource: fileName, withExtension: "json") {
@@ -181,4 +99,67 @@ func parse(jsonData: Data) -> [Review]? {
         print("Error decoding JSON data: \(error)")
     }
     return nil
+}
+
+// MARK: - Single string of text
+
+extension ViewModel {
+    func translate(text: String, using session: TranslationSession) async {
+        do {
+            let response = try await session.translate(text)
+            translatedText = response.targetText
+        } catch {
+            // Handle any errors.
+        }
+    }
+}
+
+// MARK: - Language availability
+
+extension ViewModel {
+    func checkLanguageSupport(from source: Locale.Language, to target: Locale.Language) async {
+        translateFrom = source
+        translateTo = target
+        
+        guard let translateFrom = translateFrom else { return }
+        
+        let status = await LanguageAvailability().status(from: translateFrom, to: translateTo)
+        
+        switch status {
+        case .installed, .supported:
+            isTranslationSupported = true
+        case .unsupported:
+            isTranslationSupported = false
+        @unknown default:
+            print("Translation support status for the selected language pair is unknown")
+        }
+    }
+}
+
+// MARK: - Batch of strings
+
+extension ViewModel {
+    func translateAllAtOnce(review: Review, using session: TranslationSession) async -> Review {
+        let requests: [TranslationSession.Request] = [
+            TranslationSession.Request(sourceText: review.description),
+            TranslationSession.Request(sourceText: review.highlights)
+        ]
+        
+        do {
+            let responses = try await session.translations(from: requests)
+            let translatedReview = Review(
+                id: review.id,
+                name: review.name,
+                address: review.address,
+                description: responses.first?.targetText ?? review.description,
+                highlights: responses.last?.targetText ?? review.highlights,
+                price_range: review.price_range,
+                rating: review.rating
+            )
+            return translatedReview
+        } catch {
+            print("Error executing translateAllAtOnce: \(error)")
+            return review
+        }
+    }
 }

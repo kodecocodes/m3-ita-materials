@@ -36,8 +36,8 @@ struct Review: Identifiable, Codable {
   let id: Int
   let name: String
   let address: String
-  let description: String
-  let highlights: String
+  var description: String
+  var highlights: String
   let price_range: String
   let rating: Double
 }

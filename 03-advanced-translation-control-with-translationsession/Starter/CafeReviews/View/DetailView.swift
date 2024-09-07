@@ -34,9 +34,12 @@ import SwiftUI
 import Translation
 
 struct DetailView: View {
-    @State private var showTranslation = false
     
-    var review: Review? = nil
+    @Environment(ViewModel.self) private var viewModel: ViewModel
+    
+    @State var review: Review? = nil
+    @State private var showTranslation = false
+    @State private var configuration: TranslationSession.Configuration?
     
     var body: some View {
         let translatableText = review?.description ?? ""
@@ -73,7 +76,7 @@ struct DetailView: View {
                         Text("Translation Config")
                     }
                     Button("Translate All") {
-                        // TODO: Add Translate All feature
+                        translateAll()
                     }
                 }.menuStyle(.automatic)
             }
@@ -81,6 +84,24 @@ struct DetailView: View {
         .navigationTitle(review?.name ?? "")
         .scenePadding()
         .translationPresentation(isPresented: $showTranslation, text: translatableText)
+        .translationTask(configuration) { session in
+            guard let translatableReview = review else {
+                return
+            }
+            Task {
+                review = await viewModel.translateAllAtOnce(review: translatableReview, using: session)
+            }
+        }
+    }
+    
+    private func translateAll() {
+        if configuration == nil {
+            // Set the language pairing.
+            configuration = .init(source: viewModel.translateFrom, target: viewModel.translateTo)
+        } else {
+            // Invalidate the previous configuration.
+            configuration?.invalidate()
+        }
     }
 }
 
