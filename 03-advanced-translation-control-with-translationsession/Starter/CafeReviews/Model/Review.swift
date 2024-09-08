@@ -33,11 +33,11 @@
 import Foundation
 
 struct Review: Identifiable, Codable {
-  let id: Int
-  let name: String
-  let address: String
-  var description: String
-  var highlights: String
-  let price_range: String
-  let rating: Double
+    let id: Int
+    var name: String
+    let address: String
+    var description: String
+    var highlights: String
+    let price_range: String
+    let rating: Double
 }

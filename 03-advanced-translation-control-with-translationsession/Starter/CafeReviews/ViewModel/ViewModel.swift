@@ -51,7 +51,6 @@ class ViewModel {
     }
     
     func reset() {
-        // TODO: Reset cafe reviews
         isTranslationSupported = nil
     }
     
@@ -109,7 +108,7 @@ extension ViewModel {
             let response = try await session.translate(text)
             translatedText = response.targetText
         } catch {
-            // Handle any errors.
+            print("Error executing translate: \(error)")
         }
     }
 }
@@ -160,6 +159,26 @@ extension ViewModel {
         } catch {
             print("Error executing translateAllAtOnce: \(error)")
             return review
+        }
+    }
+}
+
+// MARK: - Batch of strings as a sequence
+
+extension ViewModel {
+    func translateSequence(using session: TranslationSession) async {
+        let cafeNames = cafeReviews.compactMap { $0.name }
+        let requests: [TranslationSession.Request] = cafeNames.enumerated().map { (index, string) in
+                .init(sourceText: string, clientIdentifier: "\(index)")
+        }
+        
+        do {
+            for try await response in session.translate(batch: requests) {
+                guard let index = Int(response.clientIdentifier ?? "") else { continue }
+                cafeReviews[index].name = response.targetText
+            }
+        } catch {
+            print("Error executing translateSequence: \(error)")
         }
     }
 }

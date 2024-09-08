@@ -31,27 +31,57 @@
 /// THE SOFTWARE.
 
 import SwiftUI
+import Translation
 
 struct ContentView: View {
-  @Environment(ViewModel.self) private var viewModel: ViewModel
-
-  var body: some View {
-    NavigationStack {
-      List(viewModel.cafeReviews) { review in
-        NavigationLink {
-          DetailView(review: review)
-        } label: {
-          RowView(title: review.name,
-                  subtitle: review.address,
-                  imageName: "lightswitch.on")
+    @Environment(ViewModel.self) private var viewModel: ViewModel
+    
+    @State private var configuration: TranslationSession.Configuration?
+    
+    var body: some View {
+        NavigationStack {
+            List(viewModel.cafeReviews) { review in
+                NavigationLink {
+                    DetailView(review: review)
+                } label: {
+                    RowView(title: review.name,
+                            subtitle: review.address,
+                            imageName: "lightswitch.on")
+                }
+            }
+            .navigationTitle("Cafe Reviews")
+            .toolbar {
+                ToolbarItem(placement: .automatic) {
+                    Menu("Translate Menu") {
+                        NavigationLink {
+                            TranslationConfigView()
+                        } label: {
+                            Text("Translation Config")
+                        }
+                        Button("Translate Cafe Names") {
+                            translateAll()
+                        }
+                    }.menuStyle(.automatic)
+                }
+            }
+            .translationTask(configuration) { session in
+                Task {
+                    await viewModel.translateSequence(using: session)
+                }
+            }
         }
-      }
-      .navigationTitle("Cafe Reviews")
     }
-  }
-
+    
+    private func translateAll() {
+        if configuration == nil {
+            configuration = .init(source: viewModel.translateFrom, target: viewModel.translateTo)
+        } else {
+            configuration?.invalidate()
+        }
+    }
+    
 }
 
 #Preview {
-  ContentView()
+    ContentView()
 }
