@@ -34,6 +34,7 @@ import SwiftUI
 import Translation
 
 struct ContentView: View {
+
     @Environment(ViewModel.self) private var viewModel: ViewModel
     
     @State private var configuration: TranslationSession.Configuration?
@@ -46,7 +47,7 @@ struct ContentView: View {
                 } label: {
                     RowView(title: review.name,
                             subtitle: review.address,
-                            imageName: "lightswitch.on")
+                            imageName: "cup.and.saucer.fill")
                 }
             }
             .navigationTitle("Cafe Reviews")
