@@ -43,12 +43,13 @@ struct ContentView: View {
         } label: {
           RowView(title: review.name,
                   subtitle: review.address,
-                  imageName: "lightswitch.on")
+                  imageName: "cup.and.saucer.fill")
         }
       }
       .navigationTitle("Cafe Reviews")
     }
   }
+
 }
 
 #Preview {

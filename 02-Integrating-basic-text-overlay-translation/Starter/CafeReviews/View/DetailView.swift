@@ -33,6 +33,7 @@
 import SwiftUI
 
 struct DetailView: View {
+
   var review: Review? = nil
 
   var body: some View {
@@ -40,7 +41,7 @@ struct DetailView: View {
     VStack(alignment: .leading) {
 
       Button("Translate") {
-        // TODO: Add action
+        // Show Traslation Overlay UI
       }
       .buttonStyle(.bordered)
       .frame(maxWidth: .infinity)

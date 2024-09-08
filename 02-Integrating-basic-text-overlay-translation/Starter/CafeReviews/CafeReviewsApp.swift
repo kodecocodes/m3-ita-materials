@@ -38,8 +38,7 @@ struct CafeReviewsApp: App {
 
   var body: some Scene {
     WindowGroup {
-      ContentView()
-        .environment(viewModel)
+      ContentView().environment(viewModel)
     }
   }
 }
