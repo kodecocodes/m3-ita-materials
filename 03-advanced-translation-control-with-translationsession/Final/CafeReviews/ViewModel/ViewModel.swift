@@ -115,6 +115,70 @@ extension ViewModel {
 
 // MARK: - Language availability
 
+extension ViewModel {
+    func checkLanguageSupport(from source: Locale.Language, to target: Locale.Language) async {
+        translateFrom = source
+        translateTo = target
+        
+        guard let translateFrom = translateFrom else { return }
+        
+        let status = await LanguageAvailability().status(from: translateFrom, to: translateTo)
+        
+        switch status {
+        case .installed, .supported:
+            isTranslationSupported = true
+        case .unsupported:
+            isTranslationSupported = false
+        @unknown default:
+            print("Translation support status for the selected language pair is unknown")
+        }
+    }
+}
+
 // MARK: - Batch of strings
 
+extension ViewModel {
+    func translateAllAtOnce(review: Review, using session: TranslationSession) async -> Review {
+        let requests: [TranslationSession.Request] = [
+            TranslationSession.Request(sourceText: review.description),
+            TranslationSession.Request(sourceText: review.highlights)
+        ]
+        
+        do {
+            let responses = try await session.translations(from: requests)
+            let translatedReview = Review(
+                id: review.id,
+                name: review.name,
+                address: review.address,
+                description: responses.first?.targetText ?? review.description,
+                highlights: responses.last?.targetText ?? review.highlights,
+                price_range: review.price_range,
+                rating: review.rating
+            )
+            return translatedReview
+        } catch {
+            print("Error executing translateAllAtOnce: \(error)")
+            return review
+        }
+    }
+}
+
 // MARK: - Batch of strings as a sequence
+
+extension ViewModel {
+    func translateSequence(using session: TranslationSession) async {
+        let cafeNames = cafeReviews.compactMap { $0.name }
+        let requests: [TranslationSession.Request] = cafeNames.enumerated().map { (index, string) in
+                .init(sourceText: string, clientIdentifier: "\(index)")
+        }
+        
+        do {
+            for try await response in session.translate(batch: requests) {
+                guard let index = Int(response.clientIdentifier ?? "") else { continue }
+                cafeReviews[index].name = response.targetText
+            }
+        } catch {
+            print("Error executing translateSequence: \(error)")
+        }
+    }
+}

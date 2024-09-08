@@ -66,9 +66,7 @@ struct ContentView: View {
                 }
             }
             .translationTask(configuration) { session in
-                Task {
-                    await viewModel.translateSequence(using: session)
-                }
+                // Create task to translate cafe names
             }
         }
     }

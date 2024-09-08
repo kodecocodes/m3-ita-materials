@@ -91,6 +91,8 @@ struct TranslationConfigView: View {
     private func performCheck() async {
         guard let selectedFrom = selectedFrom else { return }
         guard let selectedTo = selectedTo else { return }
+
+        await viewModel.checkLanguageSupport(from: selectedFrom, to: selectedTo)
     }
 }
 

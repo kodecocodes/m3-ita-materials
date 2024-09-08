@@ -38,6 +38,7 @@ struct DetailView: View {
     @Environment(ViewModel.self) private var viewModel: ViewModel
     
     @State var review: Review? = nil
+    @State private var configuration: TranslationSession.Configuration?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -80,10 +81,24 @@ struct DetailView: View {
         }
         .navigationTitle(review?.name ?? "")
         .scenePadding()
+        .translationTask(configuration) { session in
+            guard let translatableReview = review else {
+                return
+            }
+            Task {
+                review = await viewModel.translateAllAtOnce(review: translatableReview, using: session)
+            }
+        }
     }
     
     private func translateAll() {
-        // Set the language pairing and handle configuration changes
+        if configuration == nil {
+            // Set the language pairing.
+            configuration = .init(source: viewModel.translateFrom, target: viewModel.translateTo)
+        } else {
+            // Invalidate the previous configuration.
+            configuration?.invalidate()
+        }
     }
 }
 

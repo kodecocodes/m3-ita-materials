@@ -33,60 +33,56 @@
 import SwiftUI
 import Translation
 
-struct DetailView: View {
-    
+struct ContentView: View {
+
     @Environment(ViewModel.self) private var viewModel: ViewModel
     
-    @State var review: Review? = nil
+    @State private var configuration: TranslationSession.Configuration?
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(verbatim: review?.description ?? "")
-                .font(.headline)
-                .padding(.top, 16)
-            
-            Text(verbatim: "Highlights")
-                .font(.title3)
-                .padding(.top, 16)
-            Text(verbatim: review?.highlights ?? "")
-            
-            Text(verbatim: "Address")
-                .font(.title3)
-                .padding(.top, 16)
-            Text(verbatim: review?.address ?? "")
-            
-            Text(verbatim: "Price Range: \(review?.price_range ?? "$$")")
-                .font(.subheadline)
-                .padding(.top, 8)
-            
-            Text(verbatim: "Rating: \(review?.rating ?? 3) / 5")
-                .font(.subheadline)
-            
-            Spacer()
-        }
-        .toolbar {
-            ToolbarItem(placement: .automatic) {
-                Menu("Translate Menu") {
-                    NavigationLink {
-                        TranslationConfigView()
-                    } label: {
-                        Text("Translation Config")
-                    }
-                    Button("Translate All") {
-                        translateAll()
-                    }
-                }.menuStyle(.automatic)
+        NavigationStack {
+            List(viewModel.cafeReviews) { review in
+                NavigationLink {
+                    DetailView(review: review)
+                } label: {
+                    RowView(title: review.name,
+                            subtitle: review.address,
+                            imageName: "cup.and.saucer.fill")
+                }
+            }
+            .navigationTitle("Cafe Reviews")
+            .toolbar {
+                ToolbarItem(placement: .automatic) {
+                    Menu("Translate Menu") {
+                        NavigationLink {
+                            TranslationConfigView()
+                        } label: {
+                            Text("Translation Config")
+                        }
+                        Button("Translate Cafe Names") {
+                            translateAll()
+                        }
+                    }.menuStyle(.automatic)
+                }
+            }
+            .translationTask(configuration) { session in
+                Task {
+                    await viewModel.translateSequence(using: session)
+                }
             }
         }
-        .navigationTitle(review?.name ?? "")
-        .scenePadding()
     }
     
     private func translateAll() {
-        // Set the language pairing and handle configuration changes
+        if configuration == nil {
+            configuration = .init(source: viewModel.translateFrom, target: viewModel.translateTo)
+        } else {
+            configuration?.invalidate()
+        }
     }
+    
 }
 
 #Preview {
-    DetailView()
+    ContentView()
 }

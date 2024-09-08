@@ -31,62 +31,14 @@
 /// THE SOFTWARE.
 
 import SwiftUI
-import Translation
 
-struct DetailView: View {
-    
-    @Environment(ViewModel.self) private var viewModel: ViewModel
-    
-    @State var review: Review? = nil
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(verbatim: review?.description ?? "")
-                .font(.headline)
-                .padding(.top, 16)
-            
-            Text(verbatim: "Highlights")
-                .font(.title3)
-                .padding(.top, 16)
-            Text(verbatim: review?.highlights ?? "")
-            
-            Text(verbatim: "Address")
-                .font(.title3)
-                .padding(.top, 16)
-            Text(verbatim: review?.address ?? "")
-            
-            Text(verbatim: "Price Range: \(review?.price_range ?? "$$")")
-                .font(.subheadline)
-                .padding(.top, 8)
-            
-            Text(verbatim: "Rating: \(review?.rating ?? 3) / 5")
-                .font(.subheadline)
-            
-            Spacer()
-        }
-        .toolbar {
-            ToolbarItem(placement: .automatic) {
-                Menu("Translate Menu") {
-                    NavigationLink {
-                        TranslationConfigView()
-                    } label: {
-                        Text("Translation Config")
-                    }
-                    Button("Translate All") {
-                        translateAll()
-                    }
-                }.menuStyle(.automatic)
-            }
-        }
-        .navigationTitle(review?.name ?? "")
-        .scenePadding()
-    }
-    
-    private func translateAll() {
-        // Set the language pairing and handle configuration changes
-    }
-}
+@main
+struct CafeReviewsApp: App {
+  @State private var viewModel = ViewModel()
 
-#Preview {
-    DetailView()
+  var body: some Scene {
+    WindowGroup {
+      ContentView().environment(viewModel)
+    }
+  }
 }
