@@ -113,8 +113,27 @@ extension ViewModel {
     }
 }
 
+
 // MARK: - Language availability
 
 // MARK: - Batch of strings
 
 // MARK: - Batch of strings as a sequence
+
+extension ViewModel {
+  func translateSequence(using session: TranslationSession) async {
+    let cafeNames = cafeReviews.compactMap { $0.name }
+    let requests: [TranslationSession.Request] = cafeNames.enumerated().map { (index, string) in
+        .init(sourceText: string, clientIdentifier: "\(index)")
+    }
+
+    do {
+      for try await response in session.translate(batch: requests) {
+        guard let index = Int(response.clientIdentifier ?? "") else { continue }
+        cafeReviews[index].name = response.targetText
+      }
+    } catch {
+      print("Error executing translateSequence: \(error)")
+    }
+  }
+}
